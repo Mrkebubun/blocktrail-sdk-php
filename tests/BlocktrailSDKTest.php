@@ -20,9 +20,11 @@ class BlocktrailSDKTest extends \PHPUnit_Framework_TestCase {
      * @return BlocktrailSDK
      */
     public function setupBlocktrailSDK() {
-        $client = new BlocktrailSDK("MY_APIKEY", "MY_APISECRET");
-        // $client->setCurlDebugging();
-        // $client->setCurlDefaultOption('verify', false); //just for local testing when cURL can't verify ssl certs
+        $apiKey = getenv('BLOCKTRAIL_API_KEY') ?: 'EXAMPLE_BLOCKTRAIL_SDK_PHP_APIKEY';
+        $apiSecret = getenv('BLOCKTRAIL_API_SECRET') ?: 'EXAMPLE_BLOCKTRAIL_SDK_PHP_APISECRET';
+
+        $client = new BlocktrailSDK($apiKey, $apiSecret);
+
         return $client;
     }
 
