@@ -7,7 +7,7 @@ php:
 install:
 - composer update
 script:
-- "./vendor/bin/phpunit"
+- "php $OPTS ./vendor/bin/phpunit"
 - "./vendor/bin/phpcs --standard=./phpcs.xml -n ./src/"
 - php coverage-checker.php clover.xml 70
 notifications:
@@ -17,3 +17,7 @@ env:
   global:
   - secure: pLsfbkA35rpgq/YGgXGPnkjRyD5EHKJQSA4KPBuwkCkXa4X63eADFf5oZpphAIVJz7dSIb0J+iUNdziTtlb36A1ragAFSoa2EffDUB0ydIeIA9hDWE1ukHrOLHnfvGaFc1Q75tKWurAgxo1svM8NPuR6iK6r4S1wqpBvXqZUBag=
   - secure: oDuQ3vB1tzNiN7eG372FOnsQP6lzoB/iuGWC1VWwyLfqTXLN0iVe/bLw1RZ8MaIAB2G/1IqomA3l7Il8URTOi2ZgSQjcPPI3h7eWR1Box14fKnFV9c3kjqJ0novoTIibhM8gHsw0hsRs1wPEdzOdyTP9bVkvcaXcvizUbHwpQZc=
+matrix:
+  include:
+  - hhvm
+  env: OPTS="-v ResourceLimit.SocketDefaultTimeout=10"
